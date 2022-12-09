@@ -8,6 +8,28 @@ import Register from "@/pages/Register"
 Vue.use(VueRouter)
 
 
+let originPush = VueRouter.prototype.push;
+let originReplace = VueRouter.prototype.replace;
+
+VueRouter.prototype.push = function (location, response, reject) {
+    if (response && reject) {
+        originPush.call(this, location, response, reject);
+    } else {
+        originPush.call(this, location, () => { }, () => { });
+    }
+}
+
+VueRouter.prototype.replace = function (location, response, reject) {
+    if (response && reject) {
+        originReplace.call(this, location, response, reject);
+    } else {
+        originReplace.call(this, location, () => { }, () => { });
+    }
+}
+
+
+
+
 export default new VueRouter({
     routes: [
         {
