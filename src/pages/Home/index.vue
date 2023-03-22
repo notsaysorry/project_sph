@@ -5,8 +5,7 @@
     <TodayRecommend />
     <Rank />
     <YouLike />
-    <Floor />
-    <Floor />
+    <Floor v-for="floor in floorList" :key="floor.id" :floor="floor" />
     <Brand />
   </div>
 </template>
@@ -18,6 +17,7 @@ import Rank from "@/pages/Home/Rank";
 import YouLike from "@/pages/Home/YouLike";
 import Floor from "@/pages/Home/Floor";
 import Brand from "@/pages/Home/Brand";
+import { mapState } from "vuex";
 export default {
   components: {
     ListContainer,
@@ -26,6 +26,12 @@ export default {
     YouLike,
     Floor,
     Brand,
+  },
+  mounted() {
+    this.$store.dispatch("home/getFloors");
+  },
+  computed: {
+    ...mapState("home", ["floorList"]),
   },
 };
 </script>

@@ -1,0 +1,24 @@
+import requests from "./request";
+import requestMock from "./requestMock";
+
+export const reqCatagoryList = () => requests({ url: "/product/getBaseCategoryList", method: "get" })
+export const reqBanners = () => requestMock({ url: "/banners", method: "get" })
+export const reqFloors = () => requestMock({ url: "/floors", method: "get" })
+export const reqGoodList = (params) => requests({ url: "/list", method: "post", data: params })
+export const reqGoodDetail = (skuId) => requests({ url: `/item/${skuId}`, method: "get" })
+export const reqAddOrUpdateShopCar = (skuId, skuNum) => requests({ url: `/cart/addToCart/${skuId}/${skuNum}`, method: "post" })
+export const reqCarList = () => requests({ url: `/cart/cartList`, method: "get" })
+export const reqDeleteCarById = (skuId) => requests({ url: `/cart/deleteCart/${skuId}`, method: "delete" })
+export const reqCheckCar = (skuId, isChecked) => requests({ url: `/cart/checkCart/${skuId}/${isChecked}`, method: "get" })
+export const reqPhoneCode = (phone) => requests({ url: `/user/passport/sendCode/${phone}`, method: "get" })
+export const reqUserRegister = (data) => requests({ url: `/user/passport/register`, data, method: "post" })
+export const reqUserLogin = (data) => requests({ url: `/user/passport/login`, data, method: "post" })
+export const reqUserInfo = () => requests({ url: `/user/passport/auth/getUserInfo`, method: "get" })
+export const reqUserLogout = () => requests({ url: `/user/passport/logout`, method: "get" })
+export const reqUserAddress = () => requests({ url: `/user/userAddress/auth/findUserAddressList`, method: "get" })
+export const reqTradeInfo = () => requests({ url: `/order/auth/trade`, method: "get" })
+export const reqSubmitOrder = (tradeNo, data) => requests({ url: `/order/auth/submitOrder?tradeNo=${tradeNo}`, data, method: "post" })
+export const reqPayInfo = (orderId) => requests({ url: `/payment/weixin/createNative/${orderId}`, method: "get" })
+export const reqPayStatus = (orderId) => requests({ url: `/payment/weixin/queryPayStatus/${orderId}`, method: "get" })
+export const reqMyOrder = (page, limit) => requests({ url: `/order/auth/${page}/${limit}`, method: "get" })
+

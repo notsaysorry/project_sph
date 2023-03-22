@@ -16,6 +16,9 @@ export default {
     Header,
     Footer,
   },
+  mounted() {
+    this.$store.dispatch("home/categoryList");
+  },
 };
 </script>
 
